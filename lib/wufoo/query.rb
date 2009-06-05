@@ -35,10 +35,6 @@ module Wufoo
         error.size > 0
       end
 
-      def valid?
-        errors.size == 0
-      end
-
       def error
         @error || ''
       end

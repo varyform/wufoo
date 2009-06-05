@@ -2,6 +2,7 @@ require 'rubygems'
 require 'test/unit'
 require 'context'
 require 'stump'
+require 'redgreen' rescue nil
 require File.join(File.dirname(__FILE__), '..', 'lib', 'wufoo')
 
 def successful_response_data
@@ -12,12 +13,27 @@ def successful_response_data
     }]}
 end
 
+def successful_query_response_data
+  {"success" => "true",
+    "query_records" => [{
+      "title"              => "data"
+   }],
+   "total_records" => "1"
+  }
+end
+
 def error_response_data
   {"wufoo_submit" => [{
       "error"        => "The supplied form URL was not found.",
       "field_errors" => [],
       "success"      => "false"
     }]}
+end
+
+def error_query_response_data
+  {"success" => "false",
+    "error" => "Invalid API key."
+  }
 end
 
 def field_error_response_data
